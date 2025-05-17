@@ -92,7 +92,8 @@ export class MemStorage implements IStorage {
       elo: 1500, // Initial ELO rating
       previousElo: null,
       rank: this.parks.size + 1, // Initial rank
-      previousRank: null
+      previousRank: null,
+      established: insertPark.established || null
     };
     this.parks.set(id, park);
     return park;
@@ -110,6 +111,7 @@ export class MemStorage implements IStorage {
       elo: newElo,
       previousRank: park.rank,
       rank: newRank,
+      established: park.established || null
     };
     
     this.parks.set(id, updatedPark);

@@ -103,8 +103,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       await storage.createVote(vote);
       
       // Update park ELO ratings
-      await storage.updateParkElo(winner.id, winnerNewRating, winner.rank);
-      await storage.updateParkElo(loser.id, loserNewRating, loser.rank);
+      await storage.updateParkElo(winner.id, winnerNewRating, winner.rank || 0);
+      await storage.updateParkElo(loser.id, loserNewRating, loser.rank || 0);
       
       // Update rankings
       const updatedRankings = await storage.getRankings();
