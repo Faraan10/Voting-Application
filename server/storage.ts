@@ -90,7 +90,9 @@ export class MemStorage implements IStorage {
       ...insertPark,
       id,
       elo: 1500, // Initial ELO rating
+      previousElo: null,
       rank: this.parks.size + 1, // Initial rank
+      previousRank: null
     };
     this.parks.set(id, park);
     return park;

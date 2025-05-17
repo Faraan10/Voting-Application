@@ -62,8 +62,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Submit a vote
   app.post("/api/vote", async (req, res) => {
     try {
+      console.log("Vote request received:", req.body);
+      
       // Validate request body
-      const voteData = insertVoteSchema.parse(req.body);
+      const voteData = {
+        winnerId: parseInt(req.body.winnerId),
+        loserId: parseInt(req.body.loserId),
+        winnerEloBefore: 0,
+        loserEloBefore: 0,
+        winnerEloAfter: 0,
+        loserEloAfter: 0
+      };
       
       // Get the parks involved in the vote
       const winner = await storage.getParkById(voteData.winnerId);
